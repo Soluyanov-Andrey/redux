@@ -1,18 +1,29 @@
 import React from 'react'
-
+import {connect} from 'react-redux'
 class Counter extends React.Component{
     render() {
          return (
              <div style={{padding: 20, border: '1px solid #ccc'}}>
-                <h1>Counter 0</h1>
+                <h1>Counter 0{this.props.counter}</h1>
                 <hr/>
                 <div>
-                    <button>Add</button>
-                    <button>Sub</button>
+                    <button onClick={()=>this.props.onChange(1)}>Add</button>
+                    <button onClick={()=>this.props.onChange(-1)}>Sub</button>
                 </div>
              </div>
          )
     }
 }
+function mapStateToProps(state){
+    return{
+        counter: state.counter2.counter2
+    }
+}
 
-export default Counter
+function mapDispatchToProps(dispatch){
+    return{
+        onChange: number =>dispatch ({type: 'ADD2', payload: number})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter)
