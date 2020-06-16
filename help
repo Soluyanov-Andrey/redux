@@ -1,4 +1,1 @@
-Устанавливаем
-npm install react-redux
-или
-yarn add react-redux
+Подготовка на переход из локального state  в redux
