@@ -1,21 +1,21 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import './App.scss'
 
 class App extends Component {
-  state = {
-    counter: 0
-  }
+
 
   updateCounter(value) {
-    this.setState({
-      counter: this.state.counter + value
-    })
+    // this.setState({
+    //   counter: this.state.counter + value
+    // })
   }
 
   render() {
+      console.log('APP',this.props);
     return (
       <div className={'App'}>
-        <h1>Счетчик <strong>{this.state.counter}</strong></h1>
+        <h1>Счетчик <strong>{this.props.counter}</strong></h1>
 
         <hr/>
 
@@ -27,5 +27,10 @@ class App extends Component {
     )
   }
 }
-
-export default App
+function mapStateToProps(state) {
+  return{
+       counter: state.counter
+  }
+}
+// мы вызываем функцию она нам вернет новую функцию и в нее мы уже кладем компонент с которым мы хотим работать
+export default connect(mapStateToProps)(App)

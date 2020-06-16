@@ -10,12 +10,13 @@ import {Provider} from 'react-redux';
 import rootReducer from "./redux/rootReducer";
 const store = createStore(rootReducer);
 
-const app =(
+const app = (
     //передаем с помощью провайдера store
     <Provider store={store}>
         <App/>
     </Provider>
 )
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+ReactDOM.render(app, document.getElementById('root'));
 registerServiceWorker();
