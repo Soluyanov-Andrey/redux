@@ -1,2 +1,5 @@
-Установили npm install redux-thunk
-данная библиотека позволяет выполнять запросы асинхронно
+изучение redux-devtools инструмент для отладки redux
+https://github.com/reduxjs/redux-devtools
+в коде вписывается некий код для работы devtools
+есть еще react devtools
+

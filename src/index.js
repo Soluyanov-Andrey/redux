@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import reduxThunk from 'redux-thunk'
 
 //В данный компонент мы должны обернуть все наше приложения для того чтоб указать что мы работаем с редаксом
@@ -22,6 +22,14 @@ import rootReducer from "./redux/rootReducer";
 //        }
 //     }
 // }
+
+const composeEnhancers =
+    typeof window === 'object' &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+            // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+        }) : compose;
+
 // loggerMiddleware- функция которая при изменении store будет выводить все в консоль
 const loggerMiddleware = store => next =>action =>{
     const result = next(action)
@@ -30,10 +38,10 @@ const loggerMiddleware = store => next =>action =>{
 }
 
 
-const store = createStore(rootReducer, applyMiddleware(
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(
     loggerMiddleware,
     reduxThunk
-));
+)));
 
 const app = (
     //передаем с помощью провайдера store
