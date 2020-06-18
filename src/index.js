@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {createStore, applyMiddleware} from 'redux';
+import reduxThunk from 'redux-thunk'
+
 //В данный компонент мы должны обернуть все наше приложения для того чтоб указать что мы работаем с редаксом
 import {Provider} from 'react-redux';
 
@@ -28,7 +30,10 @@ const loggerMiddleware = store => next =>action =>{
 }
 
 
-const store = createStore(rootReducer, applyMiddleware(loggerMiddleware));
+const store = createStore(rootReducer, applyMiddleware(
+    loggerMiddleware,
+    reduxThunk
+));
 
 const app = (
     //передаем с помощью провайдера store
